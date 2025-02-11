@@ -5,13 +5,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('./models/users');
+const http = require('http');
 const Events = require('./models/events');
 
 const app = express();
-const JWT_SECRET = 'Ragh@9936'; // Ensure this is declared
+
 
 // Database Connection
 mongoose
@@ -31,76 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
-// Authentication Middleware
-function authenticateToken(req, res, next) {
-  const token = req.cookies.authToken;
-  if (!token) return res.redirect('/login');
-
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    return res.redirect('/login');
-  }
-}
-
-// Register Route
-app.post('/register', async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, email, password: hashedPassword });
-    await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error registering user', error });
-  }
-});
-
-
-
-// Register Route
-app.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  try {
-    const user = new User({ username, email, password: hashedPassword });
-    await user.save();
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
-
-// Login Route
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
-
-    const token = jwt.sign({ username: user.username, id: user._id }, 'Ragh@9936', { expiresIn: '1h' });
-    res.cookie('authToken', token, { httpOnly: true });
-    res.json({ message: 'Login successful' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Logout Route
-app.post('/logout', (req, res) => {
-  res.clearCookie('authToken');
-  res.json({ message: 'Logged out successfully' });
-});
 
 // Protected Home Route
-app.get('/', authenticateToken, (req, res) => {
+app.get('/', (req, res) => {
   res.render('home', { username: req.user.username });
 });
 
@@ -156,4 +87,47 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
+
+// SERVER FUNCTIONALITY (Previously in www)
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+const server = http.createServer(app);
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+  if (isNaN(port)) return val;
+  if (port >= 0) return port;
+  return false;
+}
+
+function onError(error) {
+  if (error.syscall !== 'listen') throw error;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  console.log('Listening on ' + bind);
+}
+
 module.exports = app;
+
