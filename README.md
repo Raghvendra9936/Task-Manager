@@ -3,8 +3,8 @@
 https://github.com/user-attachments/assets/65d77e66-b09a-4702-a97b-4794ab9331e2
 
 ![initial_page](sample_screenshots/initial_page.png)
-![add_Event](https://github.com/user-attachments/assets/313e3cde-4a9c-422b-a21f-ec21b1ac7918)
-![show_Event](https://github.com/user-attachments/assets/033113f9-b89c-46e4-8bd7-4e1e53981b9f)
+![add_Event](sample_screenshots/add_Event.png)
+![show_Event](sample_screenshots/show_Event.png)
 Assisment :- W3Villa (Task Manager web App)
 
 This is a project that can keep track of your Task.
