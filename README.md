@@ -2,7 +2,7 @@
 
 https://github.com/user-attachments/assets/65d77e66-b09a-4702-a97b-4794ab9331e2
 
-![initial_page](https://github.com/user-attachments/assets/5082a1c9-5c9b-44f5-8630-ea3f2907c872)
+![initial_page]([https://github.com/user-attachments/assets/5082a1c9-5c9b-44f5-8630-ea3f2907c872](https://github.com/Raghvendra9936/Task-Manager/blob/main/sample_screenshots/initial_page.png))
 ![add_Event](https://github.com/user-attachments/assets/313e3cde-4a9c-422b-a21f-ec21b1ac7918)
 ![show_Event](https://github.com/user-attachments/assets/033113f9-b89c-46e4-8bd7-4e1e53981b9f)
 Assisment :- W3Villa (Task Manager web App)
