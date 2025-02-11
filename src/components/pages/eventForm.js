@@ -112,7 +112,7 @@ class EventForm extends React.Component{
         return(
             <Well style={{textAlign:"left"}}>
                 <FormGroup controlId = "event_name">
-                <ControlLabel>Event Name:</ControlLabel>
+                <ControlLabel>Task Name:</ControlLabel>
                 <FormControl
                     type="event_name"
                     placeholder = "Event Name"
