@@ -25,9 +25,9 @@ class EventList extends React.Component{
 
     show_message = (bool_val) => {
         if (bool_val)
-            return "Close your Event Listing Page"
+            return "Close your Task Listing Page"
         else
-            return "Check previously added Events"
+            return "Check previously added Tasks"
     }
 
     render(){
@@ -39,11 +39,11 @@ class EventList extends React.Component{
                         <Panel.Heading>Task_Manager</Panel.Heading>
                         <Panel.Body>
                             <Row><strong>Welcome to Task_Manager</strong></Row>
-                            <Row><i>"never forget an event with Event_Manage"</i></Row>
+                            <Row><i>"never forget an event with Task_Manager"</i></Row>
                             <Row>
                                 <Button onClick={this.showEventForm.bind(this)}
                                 bsStyle='primary pull-left' style={{margin: '15px'}}>
-                                Add New Event with Event_Manage
+                                Add New Task with Task_Manager
                                 </Button>
                                 <Button onClick={this.showEventList.bind(this)}
                                 bsStyle='primary pull-right' style={{margin: '15px'}}>
