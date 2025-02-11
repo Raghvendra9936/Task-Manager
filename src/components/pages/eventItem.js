@@ -59,7 +59,7 @@ class EventItem extends React.Component{
         }]
         console.log('===checking before sending===', new_event);
         this.props.updateEvents(new_event);
-        window.alert('Your Event has been saved by Event_Manage.')
+        window.alert('Your Event has been saved by Task_Manager.')
         this.props.getEvents();
     }
     deleteEvent(id){
@@ -99,7 +99,7 @@ class EventItem extends React.Component{
                         Delete Me
                         </Button>
                         <br/><br/>
-                        <h6><strong>Event Name:</strong> {this.props.event_name}</h6>
+                        <h6><strong>Task Name:</strong> {this.props.event_name}</h6>
                         <h6><strong>Date:</strong> {this.props.date}</h6>
                         <h6><strong>Time:</strong> {this.props.time}</h6>
                         <h6><strong>Description:</strong> {this.props.description}</h6>
@@ -107,10 +107,10 @@ class EventItem extends React.Component{
                         <Button onClick={this.open_event_details.bind(this)} bsStyle="primary"><i>click me for additional details</i></Button>
                         <Modal show={this.state.event_details} onHide={this.close_event_details.bind(this)}>
                         <Modal.Header closeButton>
-                        <Modal.Title>Here goes the details of the Event</Modal.Title>
+                        <Modal.Title>Here goes the details of the Tasks</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <h6><strong>Event Name:</strong> {this.props.event_name}</h6>
+                            <h6><strong>Task Name:</strong> {this.props.event_name}</h6>
                             <h6><strong>Date:</strong> {this.props.date}</h6>
                             <h6><strong>Time:</strong> {this.props.time}</h6>
                             <h6><strong>Description:</strong> {this.props.description}</h6>
@@ -207,7 +207,7 @@ class EventItem extends React.Component{
                     </FormGroup>
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button onClick={this.updateEvent.bind(this)}>Update Event Info</Button>
+                    <Button onClick={this.updateEvent.bind(this)}>Update Task Info</Button>
 					<Button onClick={this.close.bind(this)}>Close</Button>
                     </Modal.Footer>
                     </Modal>
