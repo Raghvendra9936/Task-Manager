@@ -49,7 +49,7 @@ class EventFetch extends React.Component{
         return(
             <Grid>
             <Well>
-                <strong>You have so many events down here!!</strong>
+                <strong>You have so many Task down here!!</strong>
             </Well>
             {eventList}
             </Grid>
